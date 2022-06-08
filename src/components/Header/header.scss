@@ -1,0 +1,49 @@
+header {
+   
+    background-color: rgb(190, 152, 152);
+}
+header .container {
+    width: 1000px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+        margin-right: auto;
+        margin-left: auto;
+}
+
+h1 {
+font-size: 45px;
+font-weight: 700;
+
+
+margin-right: 5px;
+justify-content: center;
+    align-items: center;
+
+}
+.container span {
+    padding: 5px;
+    
+    
+    display: flex;
+    height: 50px;
+    width: 150px;
+    margin-left: 5px;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+        font-weight: 700;
+        background-color: rgb(233, 68, 101);
+        color: #fff;
+
+    
+}
+
+.container span:last-child {
+    height: 70px;
+    margin-left: 0px;
+    border-radius: 5px;
+    background-color: rgb(65, 98, 243);
+}
