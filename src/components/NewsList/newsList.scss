@@ -1,0 +1,27 @@
+.news-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.link-item {
+   text-decoration: none;
+   color: rgb(109, 86, 86);
+
+}
+
+.container-news{
+    width: 100vw;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.news-item-name {
+margin: 0;
+
+}
+
+.news-list li:not(:last-child) {
+    margin-bottom: 10px;
+}

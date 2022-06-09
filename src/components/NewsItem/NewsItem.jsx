@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { apiItemNews } from '../API/Api';
+import './newsItem.scss';
 
 function NewsItem() {
   const [news, setNews] = useState(null);
@@ -23,14 +24,15 @@ function NewsItem() {
   return (
     news && (
       <>
-        <div>
-          <h2>{news.title}</h2>
-          <p>{news.body}</p>
+        <div className="news-container">
+          <button type="button" onClick={onBack}>
+            Назад к новостям
+          </button>
+          <div>
+            <h2>{news.title}</h2>
+            <p>{news.body}</p>
+          </div>
         </div>
-
-        <button type="button" onClick={onBack}>
-          Вернуться назад к новостям
-        </button>
       </>
     )
   );

@@ -6,6 +6,7 @@ import { limit } from '../API/Api';
 import Pagination from '../Pagination/Pagination';
 import SearchForm from 'components/SearchForm/SearchForm';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import './newsList.scss';
 
 function NewsList() {
   const location = useLocation();
@@ -36,7 +37,6 @@ function NewsList() {
       apiNews((page - 1) * 10).then(({ data }) => {
         setNews(data.posts);
         setMaxPage(data.total / limit);
-        console.log('page');
         history.push({
           ...location,
           search: `page=${page}`,
@@ -70,31 +70,33 @@ function NewsList() {
 
   return (
     <>
-      <SearchForm filter={filterNews} />
-      <ul>
-        {news &&
-          news.length > 0 &&
-          news.map(item => (
-            <li key={item.id}>
-              <Link
-                className="link-item"
-                to={{
-                  pathname: `/news/${item.id}`,
-                  state: { from: location },
-                }}
-              >
-                <h3 className="film-item-header">{item.title}</h3>
-              </Link>
-            </li>
-          ))}
-      </ul>
-      {maxPage && (
-        <Pagination currentPage={page} onPage={onPage} maxPage={maxPage} />
-      )}
+      <div className="container-news">
+        <SearchForm filter={filterNews} />
+        <ul className="news-list">
+          {news &&
+            news.length > 0 &&
+            news.map(item => (
+              <li key={item.id}>
+                <Link
+                  className="link-item"
+                  to={{
+                    pathname: `/news/${item.id}`,
+                    state: { from: location },
+                  }}
+                >
+                  <h3 className="news-item-name">{item.title}</h3>
+                </Link>
+              </li>
+            ))}
+        </ul>
 
-      {news?.length === 0 && (
-        <h3>Извините мы не нашли новости по запросу {query}</h3>
-      )}
+        {news?.length === 0 && (
+          <h3>Извините мы не нашли новости по запросу {query}</h3>
+        )}
+        {maxPage && (
+          <Pagination currentPage={page} onPage={onPage} maxPage={maxPage} />
+        )}
+      </div>
     </>
   );
 }

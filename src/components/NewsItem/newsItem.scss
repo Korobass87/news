@@ -1,0 +1,27 @@
+.news-container {
+    padding-top: 25px;
+    width: 1000px;
+    gap: 30px;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: start;
+    justify-content: center;
+}
+
+.news-container h2 {
+    font-size: 32px;
+    font-style: italic;
+    margin-top: 0;
+}
+
+.news-container p {
+    font-size: large;
+}
+.news-container button {
+    width: 200px;
+        height: 36px;
+        background-color: rgb(190, 152, 152);
+        border: 2px solid rgb(190, 152, 152);
+        border-radius: 8px;
+}
