@@ -1,4 +1,5 @@
 import React from 'react';
+import { Suspense } from 'react';
 import { apiNews, apiSearchNews } from '../API/Api';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -70,33 +71,35 @@ function NewsList() {
 
   return (
     <>
-      <div className="container-news">
-        <SearchForm filter={filterNews} />
-        <ul className="news-list">
-          {news &&
-            news.length > 0 &&
-            news.map(item => (
-              <li key={item.id}>
-                <Link
-                  className="link-item"
-                  to={{
-                    pathname: `/news/${item.id}`,
-                    state: { from: location },
-                  }}
-                >
-                  <h3 className="news-item-name">{item.title}</h3>
-                </Link>
-              </li>
-            ))}
-        </ul>
+      <Suspense fallback={<h2>LOADING....</h2>}>
+        <div className="container-news">
+          <SearchForm filter={filterNews} />
+          <ul className="news-list">
+            {news &&
+              news.length > 0 &&
+              news.map(item => (
+                <li key={item.id}>
+                  <Link
+                    className="link-item"
+                    to={{
+                      pathname: `/news/${item.id}`,
+                      state: { from: location },
+                    }}
+                  >
+                    <h3 className="news-item-name">{item.title}</h3>
+                  </Link>
+                </li>
+              ))}
+          </ul>
 
-        {news?.length === 0 && (
-          <h3>Извините мы не нашли новости по запросу {query}</h3>
-        )}
-        {maxPage && (
-          <Pagination currentPage={page} onPage={onPage} maxPage={maxPage} />
-        )}
-      </div>
+          {news?.length === 0 && (
+            <h3>Извините мы не нашли новости по запросу {query}</h3>
+          )}
+          {maxPage && (
+            <Pagination currentPage={page} onPage={onPage} maxPage={maxPage} />
+          )}
+        </div>
+      </Suspense>
     </>
   );
 }
